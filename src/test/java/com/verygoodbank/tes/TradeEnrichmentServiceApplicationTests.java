@@ -1,6 +1,7 @@
 package com.verygoodbank.tes;
 
 import com.verygoodbank.tes.service.TradeEnrichmentService;
+import com.verygoodbank.tes.service.TradeEnrichmentV2Service;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
@@ -19,6 +20,9 @@ class TradeEnrichmentServiceApplicationTests {
     @Autowired
     private TradeEnrichmentService tradeEnrichmentService;
 
+    @Autowired
+    private TradeEnrichmentV2Service tradeEnrichmentV2Service;
+
     private FileInputStream tradeCsvStream;
     private FileInputStream productCsvStream;
 
@@ -32,7 +36,8 @@ class TradeEnrichmentServiceApplicationTests {
     @Test
     public void testEnrichTradesUnderLoad() throws IOException, InterruptedException {
         long startTime = System.currentTimeMillis();
-        tradeEnrichmentService.enrichTrades(tradeCsvStream);
+        //tradeEnrichmentService.enrichTrades(tradeCsvStream);
+        tradeEnrichmentV2Service.enrichTrades(tradeCsvStream);
         long endTime = System.currentTimeMillis();
         logger.warn("Processed in " + (endTime - startTime) + " ms");
     }
